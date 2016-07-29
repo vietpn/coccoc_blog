@@ -7,8 +7,8 @@
     <p><?php echo $this->post['content']; ?></p>
 <?php endif; ?>
 
-<?php if (!empty($this->comments)): ?>
     <h3>Comment</h3>
+<?php if (!empty($this->comments)): ?>
     <?php foreach ($this->comments as $comment): ?>
         <ul>
             <li><?php echo $comment['username']; ?> : <?php echo $comment['content']; ?></li>
