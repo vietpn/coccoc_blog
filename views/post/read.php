@@ -1,5 +1,5 @@
 <?php if (!empty($this->post)): ?>
-    <h3><?php echo $this->post['title']; ?></h3>
+    <h1><?php echo ucfirst($this->post['title']); ?></h1>
     <?php if (Session::get('loggedIn') == true): ?>
         <label><a href="<?php echo URL . 'post/delete/' . $this->post['id']; ?>">[delete]</a></label>
         <label><a href="<?php echo URL . 'post/update/' . $this->post['id']; ?>">[update]</a></label>
@@ -17,7 +17,7 @@
 <?php endif; ?>
 
 
-    <h3>Leave comments!</h3>
+    <h3>Leave your comments!</h3>
 <?php if (!empty($this->post)): ?>
     <?php if (!empty($this->errors)): ?>
         <ul class="error">
@@ -30,7 +30,7 @@
         <?php if (Session::get('loggedIn') == true && !empty($this->user)) { ?>
             <input type="hidden" name="username" value="<?php echo $this->user['username']; ?>">
         <?php } else { ?>
-            <label>User name</label><input type="text" name="username"/><br/>
+            <label>Name</label><input type="text" name="username"/><br/>
         <?php } ?>
         <label>Comment</label><textarea cols="30" rows="5" name="content"></textarea><br/>
         <label></label><input type="submit"/>
