@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Test</title>
+    <title>Cococ Blog</title>
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css"/>
 </head>
 <body>
