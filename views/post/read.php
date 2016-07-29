@@ -17,6 +17,7 @@
 <?php endif; ?>
 
 
+    <h3>Leave comments!</h3>
 <?php if (!empty($this->post)): ?>
     <?php if (!empty($this->errors)): ?>
         <ul class="error">
@@ -31,7 +32,7 @@
         <?php } else { ?>
             <label>User name</label><input type="text" name="username"/><br/>
         <?php } ?>
-        <label>content</label><textarea cols="30" rows="5" name="content"></textarea><br/>
+        <label>Comment</label><textarea cols="30" rows="5" name="content"></textarea><br/>
         <label></label><input type="submit"/>
     </form>
 <?php endif; ?>
