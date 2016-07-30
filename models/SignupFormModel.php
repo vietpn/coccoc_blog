@@ -42,11 +42,12 @@ class SignupFormModel extends FormModel
     public function run()
     {
         if ($this->validate()) {
-            $user = new UserModel();
-            $user->username = $this->username;
-            $user->password = $this->password;
-
-            $user->save();
+            UserModel::insert(
+                array(
+                    'username' => $this->username,
+                    'password' => md5($this->password)
+                )
+            );
             return null;
         }
 

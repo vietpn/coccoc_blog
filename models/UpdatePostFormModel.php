@@ -34,14 +34,13 @@ class UpdatePostFormModel extends FormModel
     /**
      * @inheritdoc
      */
-    public function run(){
+    public function run()
+    {
         if ($this->validate()) {
-            $post = new PostModel();
-            $post->id = $this->id;
-            $post->title = $this->title;
-            $post->content = $this->content;
-
-            $post->update();
+            PostModel::update(
+                array('title' => $this->title, 'content' => $this->content),
+                array('id' => $this->id)
+            );
             return null;
         }
 

@@ -21,45 +21,6 @@ class UserModel extends DbModel
     }
 
     /**
-     * @inheritdoc
-     */
-    public function get()
-    {
-        $sth = $this->db->prepare("SELECT id,username FROM " . static::tableName() . " WHERE id = :id");
-        $sth->execute(array(':id' => $this->id));
-        $data = $sth->fetch();
-        return $data;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function save()
-    {
-        $sth = $this->db->prepare("INSERT INTO " . static::tableName() . "(username, password) VALUES(:username, md5(:password))");
-        return $sth->execute(array(
-            ':username' => $this->username,
-            ':password' => $this->password
-        ));
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function delete()
-    {
-
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function update()
-    {
-
-    }
-
-    /**
      * Get user by username and password
      * @return array
      */

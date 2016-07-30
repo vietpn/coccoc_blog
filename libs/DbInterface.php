@@ -3,26 +3,44 @@
 interface DbInterface
 {
     /**
-     * Get record
+     * Return table name
      * @return mixed
      */
-    public function get();
+    public static function tableName();
 
     /**
-     * Create new record
+     * Find record by conditions
+     * @param $arrConditions
      * @return mixed
      */
-    public function save();
+    public static function find($arrConditions);
+
+    /**
+     * Find record by id
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id);
+
+    /**
+     * Insert new record
+     * @param $arrFields
+     * @return mixed
+     */
+    public static function insert($arrFields);
 
     /**
      * Delete record
+     * @param $arrConditions
      * @return mixed
      */
-    public function delete();
+    public static function delete($arrConditions);
 
     /**
      * Update record
+     * @param $arrFields
+     * @param $arrConditions
      * @return mixed
      */
-    public function update();
+    public static function update($arrFields, $arrConditions);
 }

@@ -18,17 +18,12 @@ class post extends Controller
      */
     public function read($id)
     {
-        $readPost = new PostModel();
-        $readPost->id = $id;
-
         if (!empty(Session::get('user_id'))) {
-            $user = new UserModel();
-            $user->id = Session::get('user_id');
-            $this->view->user = $user->get();
+            $this->view->user = UserModel::findById(Session::get('user_id'));
         }
 
-        $this->view->post = $readPost->get();
-        $this->view->comments = CommentModel::getCommentByPostId($id);
+        $this->view->post = PostModel::findById($id);
+        $this->view->comments = CommentModel::find(array('post_id' => $id));
 
         if (!empty($_POST)) {
             $createCommentForm = new CreateCommentFormModel();
@@ -75,9 +70,8 @@ class post extends Controller
     {
         Auth::handleLogin();
 
-        $deletePost = new PostModel();
-        $deletePost->id = $id;
-        $deletePost->delete();
+        PostModel::delete(array('id' => $id));
+        CommentModel::delete(array('post_id' => $id));
 
         header('location: ' . URL . 'index');
     }
@@ -90,9 +84,7 @@ class post extends Controller
     {
         Auth::handleLogin();
 
-        $updatePost = new PostModel();
-        $updatePost->id = $id;
-        $this->view->post = $updatePost->get();
+        $this->view->post = PostModel::findById($id);
 
         if (!empty($_POST)) {
             $updatePostForm = new UpdatePostFormModel();

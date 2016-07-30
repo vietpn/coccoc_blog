@@ -33,11 +33,12 @@ class CreatePostFormModel extends FormModel
     public function run()
     {
         if ($this->validate()) {
-            $post = new PostModel();
-            $post->title = $this->title;
-            $post->content = $this->content;
-
-            $post->save();
+            PostModel::insert(
+                array(
+                    'title' => $this->title,
+                    'content' => $this->content
+                )
+            );
             return null;
         }
 

@@ -22,11 +22,11 @@ class CreateCommentFormModel extends FormModel
         }
 
         if (empty($this->username)) {
-            $this->errors[] = 'User name is required';
+            $this->errors[] = 'Name is required';
         }
 
         if (empty($this->content)) {
-            $this->errors[] = 'Content is required';
+            $this->errors[] = 'Comment is required';
         }
 
         return (empty($this->errors)) ? true : false;
@@ -38,12 +38,13 @@ class CreateCommentFormModel extends FormModel
     public function run()
     {
         if ($this->validate()) {
-            $comment = new CommentModel();
-            $comment->username = $this->username;
-            $comment->content = $this->content;
-            $comment->post_id = $this->post_id;
-
-            $comment->save();
+            CommentModel::insert(
+                array(
+                    'username' => $this->username,
+                    'content' => $this->content,
+                    'post_id' => $this->post_id
+                )
+            );
             return null;
         }
 
