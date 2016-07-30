@@ -1,14 +1,16 @@
 <h1>Login</h1>
-<?php if (!empty($this->errors)): ?>
-	<ul class="error">
-		<?php foreach ($this->errors as $error): ?>
-			<li><?php echo $error;?></li>
-		<?php endforeach; ?>
-	</ul>
-<?php endif ?>
+
 <form action="<?php echo URL;?>login" method="post">
 	
-	<label>User name</label><input type="text" name="username" /><br />
-	<label>Password</label><input type="password" name="password" /><br />
+	<label>User name</label>
+	<input type="text" name="username" /><br />
+	<?php if (!empty($this->errors['username'])): ?>
+		<label class="error"><?php echo $this->errors['username'];?></label>
+	<?php endif ?>
+	<label>Password</label>
+	<input type="password" name="password" /><br />
+	<?php if (!empty($this->errors['password'])): ?>
+		<label class="error"><?php echo $this->errors['password'];?></label>
+	<?php endif ?>
 	<label></label><input type="submit" />
 </form>

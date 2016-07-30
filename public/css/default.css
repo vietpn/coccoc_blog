@@ -48,16 +48,14 @@ form {
 
 form label { 
 	display: block;
-	float: left; 
-	width: 150px; 
 	padding: 0; 
 	margin: 9px 0 0;
-	text-align: right; 
+
 }
 
 form input, form select, form textarea {
 	width: auto;
-	margin: 5px 0 0 10px;
+	margin: 5px 0 0 0;
 	border: 1px solid gray;
 	padding: 4px;
 }
@@ -70,7 +68,7 @@ form input[type=submit]:hover {
 
 form br {clear: left;}
 
-.error li {
+.error li, .error {
 	color: red;
 }
 

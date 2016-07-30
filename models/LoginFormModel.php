@@ -19,11 +19,11 @@ class LoginFormModel extends FormModel
     public function validate()
     {
         if (empty($this->username)) {
-            $this->errors[] = 'User name is required';
+            $this->errors['username'] = 'User name is required';
         }
 
         if (empty($this->password)) {
-            $this->errors[] = 'Password is required';
+            $this->errors['password'] = 'Password is required';
         }
 
         if (empty($this->errors)) {
@@ -32,7 +32,7 @@ class LoginFormModel extends FormModel
             $user->password = $this->password;
             $data = $user->getByUsernamePass();
             if (empty($data)) {
-                $this->errors[] = 'Username or Password is not correct';
+                $this->errors['username'] = 'Username or Password is not correct';
             } else {
                 $this->user_id = $data['id'];
             }

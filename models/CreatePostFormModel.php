@@ -17,11 +17,11 @@ class CreatePostFormModel extends FormModel
     public function validate()
     {
         if (empty($this->title)) {
-            $this->errors[] = 'Title is required';
+            $this->errors['title'] = 'Title is required';
         }
 
         if (empty($this->content)) {
-            $this->errors[] = 'Content is required';
+            $this->errors['content'] = 'Content is required';
         }
 
         return (empty($this->errors)) ? true : false;

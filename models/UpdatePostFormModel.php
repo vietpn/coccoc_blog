@@ -17,15 +17,15 @@ class UpdatePostFormModel extends FormModel
     public function validate()
     {
         if (empty($this->title)) {
-            $this->errors[] = 'Title is required';
+            $this->errors['title'] = 'Title is required';
         }
 
         if (empty($this->content)) {
-            $this->errors[] = 'Content is required';
+            $this->errors['content'] = 'Content is required';
         }
 
         if (empty($this->id)) {
-            $this->errors[] = 'Id is required';
+            $this->errors['id'] = 'Id is required';
         }
 
         return (empty($this->errors)) ? true : false;

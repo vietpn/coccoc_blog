@@ -21,16 +21,16 @@ class SignupFormModel extends FormModel
         $user->username = $this->username;
 
         if (empty($this->username)) {
-            $this->errors[] = 'User name is required';
+            $this->errors['username'] = 'User name is required';
         }
         if (empty($this->password)) {
-            $this->errors[] = 'Password is required';
+            $this->errors['password'] = 'Password is required';
         }
         if (!empty($user->getByUsername())) {
-            $this->errors[] = 'Username is existing';
+            $this->errors['username'] = 'Username is existing';
         }
         if ($this->password != $this->confirm_password) {
-            $this->errors[] = 'Password confirm is invalid';
+            $this->errors['confirm_password'] = 'Password confirm is invalid';
         }
 
         return (empty($this->errors)) ? true : false;

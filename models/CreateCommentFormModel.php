@@ -18,15 +18,15 @@ class CreateCommentFormModel extends FormModel
     public function validate()
     {
         if (empty($this->post_id)) {
-            $this->errors[] = 'Post id is required';
+            $this->errors['post_id'] = 'Post id is required';
         }
 
         if (empty($this->username)) {
-            $this->errors[] = 'Name is required';
+            $this->errors['username'] = 'Name is required';
         }
 
         if (empty($this->content)) {
-            $this->errors[] = 'Comment is required';
+            $this->errors['content'] = 'Comment is required';
         }
 
         return (empty($this->errors)) ? true : false;
