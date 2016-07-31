@@ -24,14 +24,16 @@ abstract class DbModel extends Model implements DbInterface
     {
         try {
             $db = new Database();
-            $query = "SELECT * FROM  " . static::tableName() . " WHERE";
-            $params = [];
+            $query = "SELECT * FROM  " . static::tableName();
+            $arrWhere = [];
+            $paramWhere = [];
             foreach ($arrConditions as $key => $val) {
-                $query .= " " . $key . " = :" . $key;
-                $params[':' . $key] = $val;
+                $arrWhere[] = " " . $key . " = :" . $key;
+                $paramWhere[':' . $key] = $val;
             }
+            $query .= ' WHERE ' . implode(' AND ', $arrWhere);
             $sth = $db->prepare($query);
-            $sth->execute($params);
+            $sth->execute($paramWhere);
             $data = $sth->fetchAll();
             return $data;
         } catch (Exception $e) {
