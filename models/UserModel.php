@@ -35,18 +35,4 @@ class UserModel extends DbModel
         $data = $sth->fetch();
         return $data;
     }
-
-    /**
-     * get user by username
-     * @return mixed
-     */
-    public function getByUsername(){
-        $sth = $this->db->prepare("SELECT id FROM " . static::tableName() . " WHERE
-				username = :username");
-        $sth->execute(array(
-            ':username' => $this->username,
-        ));
-        $data = $sth->fetch();
-        return $data;
-    }
 }

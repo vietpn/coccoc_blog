@@ -3,6 +3,12 @@
 abstract class DbModel extends Model implements DbInterface
 {
     /**
+     * List errors
+     * @var array
+     */
+    public $errors = [];
+
+    /**
      * Return  table name
      * @return string
      */
@@ -132,5 +138,13 @@ abstract class DbModel extends Model implements DbInterface
             echo $e->getMessage();
             exit;
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function validate()
+    {
+        return (empty($this->errors)) ? true : false;
     }
 }

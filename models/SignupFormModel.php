@@ -17,16 +17,13 @@ class SignupFormModel extends FormModel
      */
     public function validate()
     {
-        $user = new UserModel();
-        $user->username = $this->username;
-
         if (empty($this->username)) {
             $this->errors['username'] = 'User name is required';
         }
         if (empty($this->password)) {
             $this->errors['password'] = 'Password is required';
         }
-        if (!empty($user->getByUsername())) {
+        if (!empty(UserModel::find(array('username' => $this->username)))) {
             $this->errors['username'] = 'Username is existing';
         }
         if ($this->password != $this->confirm_password) {
@@ -42,15 +39,14 @@ class SignupFormModel extends FormModel
     public function run()
     {
         if ($this->validate()) {
-            UserModel::insert(
+            return UserModel::insert(
                 array(
                     'username' => $this->username,
                     'password' => md5($this->password)
                 )
             );
-            return null;
         }
 
-        return $this->errors;
+        return false;
     }
 }

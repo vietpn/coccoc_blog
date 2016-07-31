@@ -4,7 +4,6 @@ require 'UserModel.php';
 class LoginFormModel extends FormModel
 {
 
-    public $user_id;
     public $username;
     public $password;
 
@@ -26,18 +25,6 @@ class LoginFormModel extends FormModel
             $this->errors['password'] = 'Password is required';
         }
 
-        if (empty($this->errors)) {
-            $user = new UserModel();
-            $user->username = $this->username;
-            $user->password = $this->password;
-            $data = $user->getByUsernamePass();
-            if (empty($data)) {
-                $this->errors['username'] = 'Username or Password is not correct';
-            } else {
-                $this->user_id = $data['id'];
-            }
-        }
-
         return (empty($this->errors)) ? true : false;
     }
 
@@ -47,12 +34,22 @@ class LoginFormModel extends FormModel
     public function run()
     {
         if ($this->validate()) {
+            $user = new UserModel();
+            $user->username = $this->username;
+            $user->password = $this->password;
+            $data = $user->getByUsernamePass();
+
+            if (empty($data)) {
+                $this->errors['username'] = 'Username or Password is not correct';
+                return false;
+            }
+
             Session::init();
             Session::set('loggedIn', true);
-            Session::set('user_id', $this->user_id);
-            return null;
+            Session::set('user_id', $data['id']);
+            return true;
         } else {
-            return $this->errors;
+            return false;
         }
     }
 }

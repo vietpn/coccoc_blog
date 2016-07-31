@@ -43,4 +43,10 @@ interface DbInterface
      * @return mixed
      */
     public static function update($arrFields, $arrConditions);
+
+    /**
+     * Validate fields
+     * @return bool
+     */
+    public function validate();
 }
